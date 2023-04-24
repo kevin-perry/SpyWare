@@ -23,6 +23,7 @@
 This file implements a complete spyware.
 """
 
+
 __version__ = "1.0.4"
 __author__ = "Maurice Lambert"
 __author_email__ = "mauricelambert434@gmail.com"
@@ -73,4 +74,4 @@ except ImportError:
     from . import WebcamLogger
     from .SpyWare import main as spyware
 
-print(copyright)
+print(__copyright__)

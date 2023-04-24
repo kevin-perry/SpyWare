@@ -194,9 +194,8 @@ def create_if_not_exists(filename: str) -> None:
     """
 
     if not exists(filename):
-        file = open(filename, "w")
-        file.write("")
-        file.close()
+        with open(filename, "w") as file:
+            file.write("")
 
 
 def main(config_filename: str = None, argv: List[str] = argv) -> int:

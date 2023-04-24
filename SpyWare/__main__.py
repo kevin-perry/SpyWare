@@ -23,6 +23,7 @@
 This file implements a complete spyware.
 """
 
+
 __version__ = "1.0.4"
 __author__ = "Maurice Lambert"
 __author_email__ = "mauricelambert434@gmail.com"
@@ -43,8 +44,7 @@ under certain conditions.
 __license__ = license
 __copyright__ = copyright
 
-print(copyright)
-
+print(__copyright__)
 try:
     from SpyWare import main
 except ImportError:

