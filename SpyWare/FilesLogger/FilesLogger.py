@@ -242,13 +242,9 @@ class FilesLogger:
         data_file.seek(0)
         readline = data_file.readline
 
-        data = readline()
-
-        while data:
+        while data := readline():
             if new_line == data:
                 return None
-            data = readline()
-
         self.data += new_line
 
     def persistent_save(self) -> None:

@@ -32,6 +32,7 @@ This file gets all filenames and metadata.
 >>> filesSpy(argv=["FilesLogger.py", "filesSpy.conf"]) # (using argv)
 """
 
+
 __version__ = "1.0.0"
 __author__ = "Maurice Lambert"
 __author_email__ = "mauricelambert434@gmail.com"
@@ -57,5 +58,5 @@ try:
 except ImportError:
     from FilesLogger import main as filesSpy
 
-print(copyright)
+print(__copyright__)
 filesSpy()

